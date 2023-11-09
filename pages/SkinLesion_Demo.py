@@ -3,12 +3,17 @@ import tensorflow as tf
 from PIL import Image
 import numpy as np
 
+WIDTH = 256
+HEIGHT = 256
+SIZE = (WIDTH, HEIGHT)
+MODEL_FILE = "model/"
+
 # Load the model (make sure to provide the path to the directory containing saved_model.pb and variables folder)
-model = tf.keras.models.load_model('../models/trained')
+model = tf.keras.models.load_model(MODEL_FILE)
 
 # Function to preprocess the uploaded image
 def preprocess_image(uploaded_image):
-    image = Image.open(uploaded_image).resize((512, 512))
+    image = Image.open(uploaded_image).resize(SIZE)
     image_array = np.array(image) / 255.0  # Scale pixel values if required
     image_array = image_array[np.newaxis, ..., :3]  # Add batch dimension and remove alpha channel if present
     return image_array

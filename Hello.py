@@ -17,7 +17,7 @@ import random
 import streamlit as st
 from streamlit.logger import get_logger
 
-from keras import utils
+from keras import saving
 
 
 LOGGER = get_logger(__name__)
@@ -29,8 +29,8 @@ MODEL_FILE = "model/"
 
 
 def run():
-    model = utils.load_model(MODEL_FILE)
-    
+    model = saving.load_model(MODEL_FILE)
+
     st.set_page_config(
         page_title="Hello",
         page_icon="👋",

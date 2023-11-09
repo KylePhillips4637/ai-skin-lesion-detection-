@@ -16,7 +16,6 @@ import random
 
 import streamlit as st
 from streamlit.logger import get_logger
-
 from keras import saving
 
 
@@ -38,7 +37,7 @@ def run():
 
     st.write("# Welcome to our beautiful website")
 
-    st.sidebar.success("options: ")
+    st.sidebar.success("aron!!!!: ")
 
     st.markdown(
         """

@@ -14,6 +14,9 @@
 
 import streamlit as st
 from streamlit.logger import get_logger
+import numpy
+import tensorflow as tf
+from keras import layers
 
 LOGGER = get_logger(__name__)
 
@@ -24,9 +27,9 @@ def run():
         page_icon="👋",
     )
 
-    st.write("# Welcome to Streamlit! 👋")
+    st.write("# Welcome to our beautiful website")
 
-    st.sidebar.success("Select a demo above.")
+    st.sidebar.success("Please input the image: ")
 
     st.markdown(
         """

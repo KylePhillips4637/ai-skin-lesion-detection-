@@ -3,3 +3,5 @@ numpy
 pandas
 pydeck
 streamlit
+tensorflow==2.14.0
+matplotlib

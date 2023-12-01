@@ -21,23 +21,14 @@ from keras import saving
 
 LOGGER = get_logger(__name__)
 
-WIDTH = 256
-HEIGHT = 256
-SIZE = (WIDTH, HEIGHT)
-MODEL_FILE = "model/"
-
 
 def run():
-    model = saving.load_model(MODEL_FILE)
-
     st.set_page_config(
         page_title="Hello",
         page_icon="👋",
     )
 
     st.write("# Welcome to our beautiful website")
-
-    st.sidebar.success("aron!!!!: ")
 
     st.markdown(
         """

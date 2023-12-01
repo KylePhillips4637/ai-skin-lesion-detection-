@@ -8,7 +8,7 @@ WIDTH = 256
 HEIGHT = 256
 SIZE = (WIDTH, HEIGHT)
 MODEL_FILE = "models/trained"
-WEIGHTS_FILE = "model/"
+WEIGHTS_FILE = "saved/v1/weights.h5"
 
 class EncoderBlock(layers.Layer):
     def __init__(self, n_filters, max_pooling=True):

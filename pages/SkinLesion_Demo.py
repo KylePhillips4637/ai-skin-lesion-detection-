@@ -8,7 +8,7 @@ from model import UNet
 WIDTH = 256
 HEIGHT = 256
 SIZE = (WIDTH, HEIGHT)
-WEIGHTS_FILE = "saved/v1/weights.h5"
+WEIGHTS_FILE = "weights/weights.h5"
 
 
 model = UNet()
@@ -26,7 +26,7 @@ def preprocess_image(uploaded_image):
 
 # Function to postprocess the prediction
 def postprocess_prediction(prediction):
-    mask = prediction > 0.8  # Threshold the predictions to get binary mask
+    mask = prediction > 0.4  # Threshold the predictions to get binary mask
     mask = mask.squeeze() * 255  # Remove batch dimension and convert to uint8
     return Image.fromarray(mask.astype(np.uint8))
 

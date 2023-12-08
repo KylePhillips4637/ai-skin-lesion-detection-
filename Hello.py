@@ -24,28 +24,55 @@ LOGGER = get_logger(__name__)
 
 def run():
     st.set_page_config(
-        page_title="Hello",
+        page_title="Got Cancer?",
         page_icon="👋",
     )
+    
+    st.title("Welcome to our Skin Lesion Detector Website!")
 
-    st.write("# Welcome to our beautiful website")
 
     st.markdown(
         """
-        Streamlit is an open-source app framework built specifically for
-        Machine Learning and Data Science projects.
-        **👈 Select a demo from the sidebar** to see some examples
-        of what Streamlit can do!
-        ### Want to learn more?
-        - Check out [streamlit.io](https://streamlit.io)
-        - Jump into our [documentation](https://docs.streamlit.io)
-        - Ask a question in our [community
-          forums](https://discuss.streamlit.io)
-        ### See more complex demos
-        - Use a neural net to [analyze the Udacity Self-driving Car Image
-          Dataset](https://github.com/streamlit/demo-self-driving)
-        - Explore a [New York City rideshare dataset](https://github.com/streamlit/demo-uber-nyc-pickups)
-    """
+        This tool is designed to assist in the detection and analysis of skin lesions using advanced machine learning techniques.
+        """
+    )
+
+    st.header("How Does This Tool Work?")
+    st.write(
+        """
+        - On the top left choose the model you would want to run
+        - Upload a image of the skin lesion.
+        - Our AI model analyzes the image and provides an assessment.
+        """
+    )
+
+    st.header("About the ISIC challenge")
+    st.write(
+        """
+        This project is inspired by the International Skin Imaging Collaboration (ISIC) Challenge, 
+        which is an annual competition focused on the automatic analysis of skin lesions using dermoscopic images. 
+        This challenge aims to improve and evaluate computer algorithms for the diagnosis of melanoma, 
+        a lethal form of skin cancer, as well as other skin disorders.
+        """
+    )
+    
+    
+    st.header("Credits")
+    st.markdown(        
+        """
+        Made possible by
+        - Luan Nguyen
+        - Joseph Giordano
+        - Kyle Phillips
+        - Aron Chen
+        - Alan Yin
+        """
+    )
+
+    st.write(
+        """
+        DISCLAIMER: This tool is not a substitute for professional medical advice, diagnosis, or treatment.
+        """
     )
 
 

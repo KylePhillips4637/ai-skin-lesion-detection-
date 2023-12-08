@@ -25,20 +25,26 @@ def preprocess_image(uploaded_image):
     return image_array
 
 # Function to postprocess the prediction
-def postprocess_prediction(prediction):
-    mask = prediction > 0.4  # Threshold the predictions to get binary mask
+def postprocess_prediction(prediction, threshold):
+    mask = prediction > threshold  # Threshold the predictions to get binary mask
     mask = mask.squeeze() * 255  # Remove batch dimension and convert to uint8
     return Image.fromarray(mask.astype(np.uint8))
 
 # Streamlit interface
-st.title('Skin Lesion Identification App')
+st.title('Try Your Own Image on Our Skin Segmentation Model')
 uploaded_file = st.file_uploader("Choose a skin image...", type="jpg")
 
 if uploaded_file is not None:
+
     image = preprocess_image(uploaded_file)
     st.image(image.squeeze(), caption='Uploaded Skin Image', use_column_width=True)
+
+    x1, s1 = model.encoder.block_1(image)
+    x2, s2 = model.encoder.block_2(x1)
+    x3, s3 = model.encoder.block_3(x2)
     
     prediction = model.predict(image)
-    mask_image = postprocess_prediction(prediction)
-    st.image(mask_image, caption='Predicted Lesion Mask', use_column_width=True)
-    st.image(prediction)
+    st.image(prediction, caption='Image Prediction', use_column_width=True)
+    threshold = st.slider("Set the postprocess prediction threshold", min_value=0.0, max_value=1.0, value=0.4)
+    mask_image = postprocess_prediction(prediction, threshold)
+    st.image(mask_image, caption='Image Prediction Thresholded', use_column_width=True)

@@ -38,10 +38,6 @@ if uploaded_file is not None:
 
     image = preprocess_image(uploaded_file)
     st.image(image.squeeze(), caption='Uploaded Skin Image', use_column_width=True)
-
-    x1, s1 = model.encoder.block_1(image)
-    x2, s2 = model.encoder.block_2(x1)
-    x3, s3 = model.encoder.block_3(x2)
     
     prediction = model.predict(image)
     st.image(prediction, caption='Image Prediction', use_column_width=True)

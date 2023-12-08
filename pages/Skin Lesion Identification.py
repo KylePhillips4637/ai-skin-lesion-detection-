@@ -12,10 +12,10 @@ model = ClassifierNet()
 model((layers.Input((256, 256, 3)), layers.Input(3)))
 model.load_weights('weights/weights_part_3.h5')
 
-cols = st.columns(7)
 images = os.listdir('Images/')
+cols = st.columns(len(images))
 
-for i in range(7):
+for i in range(len(images)):
     image_file = 'Images/' + images[i]
     
     with cols[i]:
@@ -27,6 +27,6 @@ for i in range(7):
         image = image.resize((256, 256))
         image = numpy.array(image.getdata()).reshape((1, 256, 256, 3)) / 255
         outputs = model((image, numpy.array(((25., 1., 0.),))))
-        st.text('None: ' + str(outputs[0][0].numpy()))
-        st.text('Type 1: ' + str(outputs[0][1].numpy()))
-        st.text('Type 2: ' + str(outputs[0][2].numpy()))
+        st.text('Nevus: ' + str(outputs[0][0].numpy()))
+        st.text('Melanoma: ' + str(outputs[0][1].numpy()))
+        st.text('Seborrheic Keratosis: ' + str(outputs[0][2].numpy()))

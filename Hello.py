@@ -24,7 +24,7 @@ def run():
         page_title="Got Cancer?🎉",
     )
     
-    st.title("Welcome to our Skin Lesion Detector Website!")
+    st.title("Welcome to our Skin Lesion Detection Website!")
 
 
     st.markdown(

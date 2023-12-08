@@ -30,22 +30,23 @@ def postprocess_prediction(prediction, threshold):
     mask = mask.squeeze() * 255  # Remove batch dimension and convert to uint8
     return Image.fromarray(mask.astype(np.uint8))
 
-# Streamlit interface
-st.title('Try Your Own Image on Our Skin Segmentation Model')
-uploaded_file = st.file_uploader("Choose a skin image...", type="jpg")
 
-if uploaded_file is not None:
+image_1 = st.image('path_to_your_image.png', use_column_width=True)
 
-    image = preprocess_image(uploaded_file)
-    st.image(image.squeeze(), caption='Uploaded Skin Image', use_column_width=True)
+# Check if the button is clicked
+if image_1:
+    run_model(image_1)
 
-    x1, s1 = model.encoder.block_1(image)
-    x2, s2 = model.encoder.block_2(x1)
-    x3, s3 = model.encoder.block_3(x2)
-    
-    prediction = model.predict(image)
-    st.image(prediction, caption='Image Prediction', use_column_width=True)
-    threshold = st.slider("Set the postprocess prediction threshold", min_value=0.0, max_value=1.0, value=0.4)
-    mask_image = postprocess_prediction(prediction, threshold)
-    st.image(mask_image, caption='Image Prediction Thresholded', use_column_width=True)
+
+def run_model(uploaded_file):
+
+    if uploaded_file is not None:
+
+        image = preprocess_image(uploaded_file)
+        st.image(image.squeeze(), caption='Uploaded Skin Image', use_column_width=True)
+
+        x1, s1 = model.encoder.block_1(image)
+        x2, s2 = model.encoder.block_2(x1)
+        x3, s3 = model.encoder.block_3(x2)
+
 

@@ -69,9 +69,9 @@ class Encoder(layers.Layer):
     def __init__(self):
         super().__init__()
         self.block_1 = EncoderBlock(8)
-        self.block_2 = EncoderBlock(16)
-        self.block_3 = EncoderBlock(32)
-        self.block_4 = EncoderBlock(64, max_pooling=False)
+        self.block_2 = EncoderBlock(12)
+        self.block_3 = EncoderBlock(16)
+        self.block_4 = EncoderBlock(32, max_pooling=False)
         
     def call(self, inputs, *args, **kwargs):
         matrix, skip_1 = self.block_1(inputs)
@@ -84,8 +84,8 @@ class Encoder(layers.Layer):
 class Decoder(layers.Layer):
     def __init__(self):
         super().__init__()
-        self.block_1 = DecoderBlock(32)
-        self.block_2 = DecoderBlock(16)
+        self.block_1 = DecoderBlock(16)
+        self.block_2 = DecoderBlock(12)
         self.block_3 = DecoderBlock(8)
         self.conv_out = layers.Conv2DTranspose(
             1, kernel_size=3, activation='sigmoid', padding='same')
@@ -116,12 +116,15 @@ class ClassifierNet(tf.keras.Model):
         super().__init__()
         self.encoder = Encoder()
         self.flatten = layers.Flatten()
-        self.dense_1 = layers.Dense(20)
-        self.dense_2 = layers.Dense(2)
+        self.concat = layers.Concatenate()
+        self.dense_1 = layers.Dense(20, activation="relu")
+        self.dense_2 = layers.Dense(3, activation="softmax")
         
     def call(self, inputs, training=False, mask=None):
-        x = self.encoder(inputs)
+        image, metadata = inputs
+        x, _, _, _ = self.encoder(image)
         x = self.flatten(x)
+        x = self.concat((x, metadata))
         x = self.dense_1(x)
         x = self.dense_2(x)
         return x

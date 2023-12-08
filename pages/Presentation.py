@@ -34,19 +34,16 @@ def postprocess_prediction(prediction, threshold):
 image_1 = st.image('path_to_your_image.png', use_column_width=True)
 
 # Check if the button is clicked
-if image_1:
-    run_model(image_1)
+uploaded_image = st.file_uploader("Upload an image", type=['png', 'jpg', 'jpeg'])
 
-
-def run_model(uploaded_file):
-
-    if uploaded_file is not None:
-
-        image = preprocess_image(uploaded_file)
-        st.image(image.squeeze(), caption='Uploaded Skin Image', use_column_width=True)
-
-        x1, s1 = model.encoder.block_1(image)
-        x2, s2 = model.encoder.block_2(x1)
-        x3, s3 = model.encoder.block_3(x2)
+# Display uploaded image if available
+if uploaded_image is not None:
+    image = Image.open(uploaded_image)
+    st.image(image, caption='Uploaded Image', use_column_width=True)
+    
+    # Button with image as a trigger
+    if st.button("Run Model"):
+        processed_image = preprocess_image(uploaded_image)
+        run_model(processed_image)
 
 

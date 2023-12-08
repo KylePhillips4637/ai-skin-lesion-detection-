@@ -4,11 +4,13 @@ from keras import layers, losses
 from PIL import Image
 import numpy as np
 from model import UNet
+import os
 
 WIDTH = 256
 HEIGHT = 256
 SIZE = (WIDTH, HEIGHT)
 WEIGHTS_FILE = "weights/weights.h5"
+IMAGES_FOLDER = "Images"
 
 
 model = UNet()

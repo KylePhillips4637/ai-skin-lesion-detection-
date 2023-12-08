@@ -12,20 +12,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import random
-
 import streamlit as st
 from streamlit.logger import get_logger
-from keras import saving
-
 
 LOGGER = get_logger(__name__)
 
 
 def run():
     st.set_page_config(
-        page_icon="🎉",
-        page_title="Got Cancer? 🎉🎉🎉",
+        page_icon="",
+        page_title="Got Cancer?",
     )
     
     st.title("Welcome to our Skin Lesion Detector Website!")

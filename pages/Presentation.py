@@ -31,18 +31,13 @@ def postprocess_prediction(prediction, threshold):
     return Image.fromarray(mask.astype(np.uint8))
 
 
-image_1 = 'Images/Image_1.png'
-button_1 = st.image(image_1, use_column_width=True)
+image_1 = 'Images/ISIC_0012272.jpg'
+button_1 = st.image(image_1)
 if button_1:
-    run_model(image_1)
 
-
-def run_model(image):
-    if image is not None:
-        image_to_show = image.open(image)
-        st.image(image_to_show, caption='Uploaded Image', use_column_width=True)
-
-        x1, s1 = model.encoder.block_1(image)
+    if image_1 is not None:
+        processed_image_1 = preprocess_image(image_1)
+        x1, s1 = model.encoder.block_1(processed_image_1)
         x2, s2 = model.encoder.block_2(x1)
         x3, s3 = model.encoder.block_3(x2)
 
@@ -50,3 +45,5 @@ def run_model(image):
         image = st.image(s1[0,:,:,1])
         image = st.image(s1[0,:,:,2])
         image = st.image(s1[0,:,:,3])
+
+

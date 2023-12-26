@@ -20,8 +20,7 @@ LOGGER = get_logger(__name__)
 
 def run():
     st.set_page_config(
-        page_icon="🎉",
-        page_title="Got Cancer?🎉",
+        page_title="AI Club -- ISIC Challenge",
     )
     
     st.title("Welcome to our Skin Lesion Detection Website!")

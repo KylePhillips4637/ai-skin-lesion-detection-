@@ -22,3 +22,11 @@ cd ai-skin-lesion-detection-
 3. Install the required dependencies.
 4. Launch Streamlit from VSCode
 5. Explore and upload your own picture
+
+## Disclaimer
+The AI Skin Lesion Detection tool is intended for educational and research purposes only and is not a substitute for professional medical advice, or diagnosis. While this tool aims to provide helpful insights and augment healthcare professionals' capabilities in skin lesion analysis, it should not be used as the sole basis for any medical decisions or diagnoses.
+
+The accuracy of the AI Skin Lesion Detection tool's output depends on various factors, including the quality of the input images and the current state of the underlying models, which are based on data available up to a certain point in time. As with any AI-based tool, there is always a possibility of errors, and users should be cautious in their interpretation of the results.
+
+By using this tool, users acknowledge and agree to the terms of this disclaimer.
+
